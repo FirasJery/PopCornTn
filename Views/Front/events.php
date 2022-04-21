@@ -1,3 +1,10 @@
+<?php
+include '../../Controller/evenementC.php';
+require_once '../../model/evenement.php';
+
+$eventC = new evenementC();
+$listeEvents = $eventC->afficherevenement();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +12,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Inner Page - Day Bootstrap Template</title>
+  <title> Events </title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -57,15 +64,15 @@
   <header id="header" class="d-flex align-items-center">
     <div class="container d-flex align-items-center justify-content-between">
 
-      <h1 class="logo"><a href="index.html">Day</a></h1>
+      <h1 class="logo"><a href="index.html"> PopCornTn </a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto " href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto " href="index.html">Home</a></li>
           <li><a class="nav-link scrollto" href="#about">About</a></li>
-          <li><a class="nav-link scrollto" href="#Evènements">Evènements</a></li>
+          <li><a class="nav-link scrollto" href="events.php">Evènements</a></li>
           <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
           <li><a class="nav-link scrollto" href="#pricing">Pricing</a></li>
           <li><a class="nav-link scrollto" href="#team">Team</a></li>
@@ -79,91 +86,93 @@
 
   <main id="main">
 
-    <!-- ======= Breadcrumbs ======= -->
-    <section id="breadcrumbs" class="breadcrumbs">
-      <div class="container">
+<!-- ======= Breadcrumbs ======= -->
+<section id="breadcrumbs" class="breadcrumbs">
+  <div class="container">
 
-        <ol>
-          <li><a href="index.html">Home</a></li>
-          <li>Inner Page</li>
-        </ol>
-        <h2>Inner Page</h2>
+    <ol>
+      <li><a href="index.html">Home</a></li>
+      <li> Events </li>
+    </ol>
+    <h2>Events</h2>
 
-      </div>
-    </section><!-- End Breadcrumbs -->
+  </div>
+</section><!-- End Breadcrumbs -->
 
-    <section class="inner-page">
-      <div class="container">
-       <!-- ======= Services Section ======= -->
-    <section id="services" class="services">
-      <div class="container">
+<section class="inner-page">
+  <div class="container">
+   <!-- ======= Services Section ======= -->
+<section id="services" class="services">
+  <div class="container">
 
-        <div class="section-title">
+    <div class="section-title">
+      
+      <h2>Events</h2>
+      <p>Cherchez vos évènements préférés</p>
+    </div>
+
+    <div class="row">
+     <?php foreach ($listeEvents as $key) {?>
+       
+       <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up">
+        <div class="icon-box">
+          <div class="icon"><i class="bx bxl-dribbble"></i></div>
+          <h4><a href=""><?php echo $key['titre']; ?> </a></h4>
+       <img  src="<?php echo $key['img']; ?>"  width="250"  height="250" alt="image"/>  
+          <p><?php echo $key['description']; ?> </p>
           
-          <h2>Events</h2>
-          <p>Cherchez vos évènements préférés</p>
         </div>
+      </div>
+      <?php
+     }
+      ?>
 
-        <div class="row">
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bxl-dribbble"></i></div>
-              <h4><a href="">Lorem Ipsum</a></h4>
-              <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
-            </div>
+    </div>
+
+  </div>
+</section><!-- End Services Section -->
+<section id="clients" class="clients">
+      <div class="container" data-aos="zoom-in">
+
+        <div class="row d-flex align-items-center">
+
+          <div class="col-lg-2 col-md-4 col-6">
+            <img src="assets/img/clients/client-1.png" class="img-fluid" alt="">
           </div>
 
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="fade-up" data-aos-delay="150">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-file"></i></div>
-              <h4><a href="">Sed ut perspiciatis</a></h4>
-              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
-            </div>
+          <div class="col-lg-2 col-md-4 col-6">
+            <img src="assets/img/clients/client-2.png" class="img-fluid" alt="">
           </div>
 
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="300">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-tachometer"></i></div>
-              <h4><a href="">Magni Dolores</a></h4>
-              <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
-            </div>
+          <div class="col-lg-2 col-md-4 col-6">
+            <img src="assets/img/clients/client-3.png" class="img-fluid" alt="">
           </div>
 
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="fade-up" data-aos-delay="450">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-world"></i></div>
-              <h4><a href="">Nemo Enim</a></h4>
-              <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
-            </div>
+          <div class="col-lg-2 col-md-4 col-6">
+            <img src="assets/img/clients/client-4.png" class="img-fluid" alt="">
           </div>
 
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="fade-up" data-aos-delay="600">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-slideshow"></i></div>
-              <h4><a href="">Dele cardo</a></h4>
-              <p>Quis consequatur saepe eligendi voluptatem consequatur dolor consequuntur</p>
-            </div>
+          <div class="col-lg-2 col-md-4 col-6">
+            <img src="assets/img/clients/client-5.png" class="img-fluid" alt="">
           </div>
 
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="fade-up" data-aos-delay="750">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-arch"></i></div>
-              <h4><a href="">Divera don</a></h4>
-              <p>Modi nostrum vel laborum. Porro fugit error sit minus sapiente sit aspernatur</p>
-            </div>
+          <div class="col-lg-2 col-md-4 col-6">
+            <img src="assets/img/clients/client-6.png" class="img-fluid" alt="">
           </div>
 
         </div>
 
       </div>
-    </section><!-- End Services Section -->
-        <p>
-          Example inner page template
-        </p>
-      </div>
-    </section>
+    </section><!-- End Clients Section -->
+    <p align = "center">
+     End 
+    </p>
+  </div>
+</section>
 
-  </main><!-- End #main -->
+</main><!-- End #main -->
+
+  
 
   <!-- ======= Footer ======= -->
   <footer id="footer">
@@ -189,14 +198,6 @@
             </div>
           </div>
 
-          <div class="col-lg-4 col-md-6 footer-newsletter">
-            <h4>Our Newsletter</h4>
-            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="Subscribe">
-            </form>
-
-          </div>
 
         </div>
       </div>
