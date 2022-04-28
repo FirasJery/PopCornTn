@@ -20,7 +20,7 @@
 			$this->prix = $prix;
 		}
 
-        function setid(string $id){
+        function setid(int $id){
 			$this->id=$id;
 		}
         function settitre(string $titre){

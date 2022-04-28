@@ -8,7 +8,21 @@
 
         function afficherevenement()
         {
-            $requete = "select * from evenement";
+            $requete = "select * from evenement INNER JOIN sponsor ON evenement.id = sponsor.id_event";
+            $config = config::getConnexion();
+            try {
+                $querry = $config->prepare($requete);
+                $querry->execute();
+                $result = $querry->fetchAll();
+                return $result ;
+            } catch (PDOException $th) {
+                 $th->getMessage();
+            }
+        }
+
+        function searchevenement($search)
+        {
+            $requete = "select * from evenement INNER JOIN sponsor ON evenement.id = sponsor.id_event WHERE evenement.titre LIKE '%$search%'";
             $config = config::getConnexion();
             try {
                 $querry = $config->prepare($requete);
@@ -58,6 +72,7 @@
                     'auteur'=>$evenement->getauteur(),
                     'prix'=>$evenement->getPrix()
                 ]);
+                $evenement->setid($config->lastInsertId());
             } catch (PDOException $th) {
                  $th->getMessage();
             }

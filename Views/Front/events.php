@@ -120,6 +120,7 @@ $listeEvents = $eventC->afficherevenement();
           <h4><a href=""><?php echo $key['titre']; ?> </a></h4>
        <img  src="<?php echo $key['img']; ?>"  width="250"  height="250" alt="image"/>  
           <p><?php echo $key['description']; ?> </p>
+          <h3 color ="black"> Sponsorisé par <?php echo $key['nom_sponsor']; ?> </h3>
           
         </div>
       </div>

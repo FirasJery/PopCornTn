@@ -2,12 +2,14 @@
 include '../../Controller/evenementC.php';
 include "head.php";
 require_once '../../model/evenement.php';
+include '../../Controller/sponsorC.php';
+require_once '../../model/sponsor.php';
 
 $eventC = new evenementC();
 if (isset($_GET['id'])) {
   $eventToEdit = $eventC->getevenementbyID($_GET['id']);
 }
-$listeEvents = $eventC->afficherevenement();
+
 
 if (isset($_REQUEST['add']) || isset($_REQUEST['edit'])) {
   $target_dir = "../uploads/";
@@ -50,9 +52,12 @@ if (isset($_REQUEST['add']) || isset($_REQUEST['edit'])) {
       if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
           echo 'aaaaaa';
           $evenementC = new evenementC();
+          $sponsorC = new sponsorC();
           if (isset($_REQUEST['add'])) {
             $evenement = new evenement(1, $_POST['titre'], $_POST['description'], $target_file, $_POST['auteur'], $_POST['prix']);
             $evenementC->ajouterevenement($evenement);
+            $sponsor = new sponsor(1,$_POST['sponsor'], $evenement->getid());
+            $sponsorC->ajoutersponsor($sponsor);
           } else if (isset($_REQUEST['edit'])) {
           $evenement = new evenement($_POST['id'], $_POST['titre'], $_POST['description'], $target_file, $_POST['auteur'], $_POST['prix']);
           $evenementC->modifierevenement($evenement);
@@ -63,6 +68,12 @@ if (isset($_REQUEST['add']) || isset($_REQUEST['edit'])) {
           header('Location:blank.php');
       }
   }
+}
+if (isset($_REQUEST['search'])){
+  $listeEvents = $eventC->searchevenement($_POST['search_text']);
+
+}else{
+  $listeEvents = $eventC->afficherevenement();
 }
 
 ?>
@@ -96,29 +107,34 @@ include "side-bar.php";
                     ?>
                     <div class="form-group">
                       <label for="nom">nom</label>
-                      <input type="text" class="form-control" id="nom" name="titre" placeholder="nom" name="<?php if (isset($eventToEdit)) echo $eventToEdit['titre']  ?>"   >
+                      <input required type="text" class="form-control" id="nom" name="titre" placeholder="nom" name="<?php if (isset($eventToEdit)) echo $eventToEdit['titre']  ?>"   >
                     </div>
                     <div class="form-group">
                       <label for="description">description</label>
-                      <input type="textarea" class="form-control" id="description" name="description" placeholder="description" <?php if (isset($eventToEdit)) echo 'value".'.$eventToEdit['description'].'"' ?>  >
+                      <input required type="textarea" class="form-control" id="description" name="description" placeholder="description" <?php if (isset($eventToEdit)) echo 'value".'.$eventToEdit['description'].'"' ?>  >
                     </div>
                     <div class="form-group">
                       <label for="Realisateur">Realisateur</label>
-                      <input type="text" class="form-control" id="Realisateur" placeholder="Realisateur" name="auteur"   <?php if (isset($eventToEdit)) echo 'value".'.$eventToEdit['auteur'].'"' ?>    >
+                      <input required type="text" class="form-control" id="Realisateur" placeholder="Realisateur" name="auteur"   <?php if (isset($eventToEdit)) echo 'value".'.$eventToEdit['auteur'].'"' ?>    >
                     </div>
                     <div class="form-group">
                       <label for="Prix">Prix</label>
-                      <input type="number" class="form-control" id="Prix" placeholder="Prix" name="prix"      <?php if (isset($eventToEdit)) echo 'value".'.$eventToEdit['prix'].'"' ?>        >
+                      <input required type="number" class="form-control" id="Prix" placeholder="Prix" name="prix"      <?php if (isset($eventToEdit)) echo 'value".'.$eventToEdit['prix'].'"' ?>        >
                     </div>
                     <div class="form-group">
                       <label for="date">Date</label>
-                      <input type="date" class="form-control" id="date"  name="date">
+                      <input required type="date" class="form-control" id="date"  name="date">
                     </div>
                     
                     <div class="form-group">
                       <label>File upload</label>
-                      <input type="file" class="form-control" id="fileToUpload"  name="fileToUpload">
+                      <input required type="file" class="form-control" id="fileToUpload"  name="fileToUpload">
                     </div>
+                    <div class="form-group">
+                      <label for="sponsor">sponsor</label>
+                      <input required type="text" class="form-control" id="sponsor" placeholder="sponsor" name="sponsor"   <?php if (isset($eventToEdit)) echo 'value".'.$eventToEdit['sponsor'].'"' ?>    >
+                    </div>
+
                     
                     <button type="submit" name="add" class="btn btn-primary me-2">Submit</button>
                     <button type="submit" name="edit" class="btn btn-dark btn-icon-text">
@@ -134,6 +150,11 @@ include "side-bar.php";
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">Evenements</h4>
+                  <form class="forms-sample" action="" enctype="multipart/form-data" method="POST">
+                  <input type="text" class="form-control" id="search_text" placeholder="search_text" name="search_text" >
+                  <button type="submit" name="search" class="btn btn-primary me-2">Search</button>
+                  </form>
+
                   <div class="table-responsive">
                     <table class="table table-striped">
                       <thead>
@@ -155,6 +176,9 @@ include "side-bar.php";
                           </th>
                           <th>
                             affiche
+                          </th>
+                          <th>
+                            sponsor
                           </th>
                           <th>
                             Edit
@@ -183,8 +207,12 @@ include "side-bar.php";
                           <td>
                           <?php echo $key['prix']; ?>
                           </td>
+                          
                           <td class="py-1">
                             <img src="<?php echo $key['img']; ?>" alt="image"/>
+                          </td>
+                          <td>
+                          <?php echo $key['nom_sponsor']; ?>
                           </td>
                           <td>
                             <a href="blank.php?id=<?php echo $key['id']; ?>" >
