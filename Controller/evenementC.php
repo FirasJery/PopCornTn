@@ -117,4 +117,29 @@
 				die('Erreur: '.$e->getMessage());
 			}
         }
+        function trievenement(){
+            $sql="select * from evenement INNER JOIN sponsor ON evenement.id = sponsor.id_event order by evenement.titre";
+            $db = config::getConnexion();
+            try{
+                $liste = $db->query($sql);
+                return $liste;
+            }
+            catch(Exception $e){
+                die('Erreur:' . $e->getMessage());
+            }
+        }
+        function countEvent(){
+
+            $sql="SELECT count(id) FROM evenement " ;
+            $db = config::getConnexion();
+            try{
+                $query = $db->query($sql);
+                $query->execute();
+                   $prog_number =$query->fetchColumn();
+                return $prog_number;
+            }
+            catch(Exception $e){
+                die('Erreur: '.$e->getMessage());
+            }   
+        }
     }

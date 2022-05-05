@@ -1,9 +1,11 @@
 <?php 
 include '../../Controller/evenementC.php';
+include '../../Controller/mail.php';
 include "head.php";
 require_once '../../model/evenement.php';
 include '../../Controller/sponsorC.php';
 require_once '../../model/sponsor.php';
+
 
 $eventC = new evenementC();
 if (isset($_GET['id'])) {
@@ -57,10 +59,19 @@ if (isset($_REQUEST['add']) || isset($_REQUEST['edit'])) {
           if (isset($_REQUEST['add'])) {
             $evenement = new evenement(1, $_POST['titre'], $_POST['description'], $target_file, $_POST['auteur'], $_POST['prix']);
             $evenementC->ajouterevenement($evenement);
+            $email='firas.jery@gmail.com';
+            $email_content = array(
+               'Subject' => 'event bien ajoute',
+               'body' => "Bonjour Mr/Mme ,
+               votre evenement est bien ajoute,
+               cordialement,
+               POPCORNTN"
+           );
+           sendemail($email,$email_content);
             $sponsor = new sponsor(1,$_POST['sponsor'], $evenement->getid());
             $sponsorC->ajoutersponsor($sponsor);
           } else if (isset($_REQUEST['edit'])) {
-          $evenement = new evenement($_POST['id'], $_POST['titre'], $_POST['description'], $target_file, $_POST['auteur'], $_POST['prix'],$_POST['sponsor']);
+          $evenement = new evenement($_POST['id'], $_POST['titre'], $_POST['description'], $target_file, $_POST['auteur'], $_POST['prix']);
           $evenementC->modifierevenement($evenement);
           }
           header('Location:blank.php');
@@ -73,7 +84,11 @@ if (isset($_REQUEST['add']) || isset($_REQUEST['edit'])) {
 if (isset($_REQUEST['search'])){
   $listeEvents = $eventC->searchevenement($_POST['search_text']);
 
-}else{
+}
+else if(isset($_REQUEST['tri'])){
+$listeEvents = $eventC->trievenement();
+}
+else{
   $listeEvents = $eventC->afficherevenement();
 }
 
@@ -132,7 +147,7 @@ include "side-bar.php";
                     </div>
                     <div class="form-group">
                       <label for="sponsor">sponsor</label>
-                      <input required type="text" class="form-control" id="sponsor" placeholder="sponsor" name="sponsor"   <?php// if (isset($eventToEdit)) echo 'value".'.$eventToEdit['nom_sponsor'].'"' ?>    >
+                      <input required type="text" class="form-control" id="sponsor" placeholder="sponsor" name="sponsor"   <?php // if (isset($eventToEdit)) echo 'value".'.$eventToEdit['nom_sponsor'].'"' ?>    >
                     </div>
 
                     
@@ -153,6 +168,7 @@ include "side-bar.php";
                   <form class="forms-sample" action="" enctype="multipart/form-data" method="POST">
                   <input type="text" class="form-control" id="search_text" placeholder="search_text" name="search_text" >
                   <button type="submit" name="search" class="btn btn-primary me-2">Search</button>
+                  <button type="submit" name="tri" class="btn btn-primary me-2">Tri</button>
                   </form>
 
                   <div class="table-responsive">
@@ -238,10 +254,53 @@ include "side-bar.php";
               </div>
             </div>
           </div>
+          <div>
+                <!---- Order list -->
+                <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title" >Charts</h4>
+                    
+                    <table>
+                        <thead>
+                            <tr>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <br><br>
+                            </tr>
+                            <tr>
+                                <canvas id="bar-chart-horizontal" width="800" height="100"></canvas>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
         </div>
+        </div>
+        </div>
+        
+        <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title" >Export</h4>
+                    <a href="export.php">
+                    <button class="btn btn-danger">Export Excel</button>
+                </div>
+        </div>
+        </div>
+        </div>
+            </div>
+
 
 
   </div>
+
+
+
+
   <!-- plugins:js -->
   <script src="vendors/js/vendor.bundle.base.js"></script>
   <!-- endinject -->
@@ -263,6 +322,31 @@ include "side-bar.php";
   <script src="js/dashboard.js"></script>
   <script src="js/Chart.roundedBarCharts.js"></script>
   <!-- End custom js for this page-->
+  <script>
+                new Chart(document.getElementById("bar-chart-horizontal"), {
+                    type: 'horizontalBar',
+                    data: {
+                        labels: ["Evenemenets"],
+                        datasets: [{
+                            label: "Population (millions)",
+                            backgroundColor: ["#3e95cd", "#8e5ea2"],
+                            data: [<?php echo $eventC->countEvent(); ?>]
+                        }]
+                    },
+                    options: {
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: 'Nombre des evenements'
+                        }
+                    }
+                });
+            </script>
+            <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+            <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
 </body>
 
 </html>

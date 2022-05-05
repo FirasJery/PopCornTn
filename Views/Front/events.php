@@ -116,12 +116,12 @@ $listeEvents = $eventC->afficherevenement();
        
        <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up">
         <div class="icon-box">
-          <div class="icon"><i class="bx bxl-dribbble"></i></div>
+          <div class="icon"><i class="bi bi-card-text"></i></div>
           <h4><a href=""><?php echo $key['titre']; ?> </a></h4>
        <img  src="<?php echo $key['img']; ?>"  width="250"  height="250" alt="image"/>  
           <p><?php echo $key['description']; ?> </p>
-          <h3 color ="black"> Sponsorisé par <?php echo $key['nom_sponsor']; ?> </h3>
-          
+          <h3> &nbsp; &nbsp; &nbsp; Sponsorisé par &nbsp; &nbsp; &nbsp; <br> </h3>
+          <h4> <a href=""><?php echo $key['nom_sponsor']; ?>  </a></h4>
         </div>
       </div>
       <?php
@@ -165,9 +165,7 @@ $listeEvents = $eventC->afficherevenement();
 
       </div>
     </section><!-- End Clients Section -->
-    <p align = "center">
-     End 
-    </p>
+   
   </div>
 </section>
 

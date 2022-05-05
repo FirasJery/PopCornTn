@@ -1,0 +1,96 @@
+.details{
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 30px;
+    /*margin-top: 10px;*/
+}
+.details .recentorders{
+    position: relative;
+    display: grid;
+    min-height: 500px;
+    background: var(--white);
+    padding: 20px;
+    box-shadow: 0 7px 25px rgba(0,0,0,0.08);
+    border-radius: 20px;
+    width: 1100px;
+}
+.cardheader{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.cardheader {
+    font-weight: 600;
+    color: var(--blue);
+}
+
+.details {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+.details {
+font-weight: 600;
+
+}
+.details .recentorders {
+    color: var(--black);
+    border-bottom:1px solid rgba(0,0,0,0.1);
+}
+.details .recentorders :last-child{
+    border-bottom: none;
+}
+
+
+.details .recentorders :hover{
+    background-color: var(--blue);
+    color: var(--white);
+}
+.details .recentorders {
+    padding: 10px;
+}
+.details .recentorders :last-child{
+    text-align: end;
+}
+.details .recentorders :nth-child(2){
+    text-align: end;
+}
+.details .recentorders :nth-child(3){
+    text-align: center;
+}
+
+
+
+/* responsive desing*/
+
+@media (max-width: 768px)
+{
+    .details{
+        grid-template-columns: repeat(1,1fr);
+    }
+    .recentorders{
+        overflow-x: auto;
+    }
+
+
+}
+@media (max-width: 480px)
+{
+    
+    .cardheader {
+        font-size: 20px;
+    }
+ 
+}
+
+
+
+
+
+
+
+
+
