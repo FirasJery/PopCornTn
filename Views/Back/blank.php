@@ -240,7 +240,7 @@ include "side-bar.php";
 
                           </td>
                           <td>
-                          <a href="deleteEvent.php?id=<?php echo $key['id']; ?>">
+                          <a href="deleteEvent.php?id=<?php echo $key['id_event']; ?>">
                           <button type="button" class="btn btn-danger">Delete</button>
                           </td>
                         </a>
@@ -260,21 +260,11 @@ include "side-bar.php";
                 <div class="card">
                 <div class="card-body">
                     <h4 class="card-title" >Charts</h4>
-                    
                     <table>
-                        <thead>
-                            <tr>
-
-                            </tr>
-                        </thead>
                         <tbody>
-                            <tr>
-                                <br><br>
-                            </tr>
                             <tr>
                                 <canvas id="bar-chart-horizontal" width="800" height="100"></canvas>
                             </tr>
-
                         </tbody>
                     </table>
                 </div>
@@ -326,14 +316,21 @@ include "side-bar.php";
                 new Chart(document.getElementById("bar-chart-horizontal"), {
                     type: 'horizontalBar',
                     data: {
-                        labels: ["Evenemenets"],
+                        labels: ["Evenements"],
                         datasets: [{
-                            label: "Population (millions)",
+                            label: "Nombre evenements",
                             backgroundColor: ["#3e95cd", "#8e5ea2"],
                             data: [<?php echo $eventC->countEvent(); ?>]
                         }]
                     },
                     options: {
+                      scales: {
+         xAxes: [{
+            ticks: {
+               stepSize: 1
+            }
+         }]
+      },
                         legend: {
                             display: false
                         },
