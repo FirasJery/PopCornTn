@@ -8,6 +8,7 @@ require_once '../../model/sponsor.php';
 $eventC = new evenementC();
 if (isset($_GET['id'])) {
   $eventToEdit = $eventC->getevenementbyID($_GET['id']);
+  
 }
 
 
@@ -59,7 +60,7 @@ if (isset($_REQUEST['add']) || isset($_REQUEST['edit'])) {
             $sponsor = new sponsor(1,$_POST['sponsor'], $evenement->getid());
             $sponsorC->ajoutersponsor($sponsor);
           } else if (isset($_REQUEST['edit'])) {
-          $evenement = new evenement($_POST['id'], $_POST['titre'], $_POST['description'], $target_file, $_POST['auteur'], $_POST['prix']);
+          $evenement = new evenement($_POST['id'], $_POST['titre'], $_POST['description'], $target_file, $_POST['auteur'], $_POST['prix'],$_POST['sponsor']);
           $evenementC->modifierevenement($evenement);
           }
           header('Location:blank.php');
@@ -103,11 +104,10 @@ include "side-bar.php";
                       <label for="id">id</label>
                       <input type="text" class="form-control" id="id" name="id" value="<?php echo $eventToEdit['id'] ?>">
                     </div>
-                      <?php  }
-                    ?>
+                      <?php  } ?>
                     <div class="form-group">
                       <label for="nom">nom</label>
-                      <input required type="text" class="form-control" id="nom" name="titre" placeholder="nom" name="<?php if (isset($eventToEdit)) echo $eventToEdit['titre']  ?>"   >
+                      <input required type="text" class="form-control" id="nom" name="titre" placeholder="nom" <?php if (isset($eventToEdit)) echo $eventToEdit['titre']  ?>  >
                     </div>
                     <div class="form-group">
                       <label for="description">description</label>
@@ -132,7 +132,7 @@ include "side-bar.php";
                     </div>
                     <div class="form-group">
                       <label for="sponsor">sponsor</label>
-                      <input required type="text" class="form-control" id="sponsor" placeholder="sponsor" name="sponsor"   <?php if (isset($eventToEdit)) echo 'value".'.$eventToEdit['sponsor'].'"' ?>    >
+                      <input required type="text" class="form-control" id="sponsor" placeholder="sponsor" name="sponsor"   <?php// if (isset($eventToEdit)) echo 'value".'.$eventToEdit['nom_sponsor'].'"' ?>    >
                     </div>
 
                     
@@ -215,7 +215,7 @@ include "side-bar.php";
                           <?php echo $key['nom_sponsor']; ?>
                           </td>
                           <td>
-                            <a href="blank.php?id=<?php echo $key['id']; ?>" >
+                            <a href="blank.php?id=<?php echo $key['id_event']; ?>" >
                             <button type="button" class="btn btn-dark btn-icon-text">
                                 Edit
                                   <i class="ti-file btn-icon-append"></i>                          
