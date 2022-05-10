@@ -2,28 +2,12 @@
 include '../../Controller/evenementC.php';
 require_once '../../model/evenement.php';
 
-
 session_start();
 $filmC = new filmC();
-$list['Pas de filtres'] = $filmC->afficherevenement();
-$list['Action'] = $filmC->afficherevenementCateg("Action");
-$list['Drama'] = $filmC->afficherevenementCateg("Drama");
-$list['Comédie'] = $filmC->afficherevenementCateg("Comédie");
-$list['Horreur'] = $filmC->afficherevenementCateg("Horreur");
-$list['Romance'] = $filmC->afficherevenementCateg("Romance");
-$list['Sci-Fi'] = $filmC->afficherevenementCateg("Sci-Fi");
-$filtre = "Pas de filtres";
-if(isset($_POST['search'])){
-  $filtre = $_POST["categ"];
-}
-foreach($list["Pas de filtres"] as $key){
-  if(isset($_POST["res" . $key["id"]])){
-    $filmC->augmenterVente($key["titre"]);
-  }
-  if(isset($_POST["profile" . $key["id"]])){
-    $_SESSION['sq'] = $key["id"];
-    header("Location:profile.php");
-  }
+$film = $filmC->getevenementbyID($_SESSION['sq']);
+if(isset($_POST["test"])){ 
+  $filmC->Noter($_SESSION['sq'], $_POST["note"]);
+  header("Location:profile.php");
 }
 ?>
 <!DOCTYPE html>
@@ -93,7 +77,7 @@ foreach($list["Pas de filtres"] as $key){
         <ul>
           <li><a class="nav-link scrollto " href="index.html">Home</a></li>
           <li><a class="nav-link scrollto" href="#about">About</a></li>
-          <li><a class="nav-link scrollto" href="events.php">Films</a></li>
+          <li><a class="nav-link scrollto" href="index.php">Films</a></li>
           <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
           <li><a class="nav-link scrollto" href="#pricing">Pricing</a></li>
           <li><a class="nav-link scrollto" href="#team">Team</a></li>
@@ -128,46 +112,35 @@ foreach($list["Pas de filtres"] as $key){
 
     <div class="section-title">
       
-      <h2>Films</h2>
+      <h2><?php echo $film['titre'] ?></h2>
       <p>Cherchez vos Films préférés</p>
-      <form action="" method="post">
-        <select name="categ" id="categ" value="Pas de filtres">
-          <option value="Pas de filtres">Pas de filtres</option>
-          <option value="Action">Action</option>
-          <option value="Drama">Drama</option>
-          <option value="Comédie">Comédie</option>
-          <option value="Horreur">Horreur</option>
-          <option value="Romance">Romance</option>
-          <option value="Sci-Fi">Sci-Fi</option>
+    </div>
+    <img  src="<?php echo $film["img"] ?>"  width="250"  height="250" alt="image"/>
+    <h4><a href=""><?php echo "Note:" . number_format((float)$film["note"], 1, '.', ''). "/5" ?> </a></h4>
+    <form action="" method="POST">
+    <select name="note" id="note" value="0">
+          <option value=0>0/5</option>
+          <option value=1>1/5</option>
+          <option value=2>2/5</option>
+          <option value=3>3/5</option>
+          <option value=4>4/5</option>
+          <option value=5>5/5</option>
         </select>
-        <input type="submit" name="search" value="Go"/>
-      </form>
+        <input type="submit" name="test" id="test" value="Noter"/>
+    </form>
+    <div style="position:relative;right:-300px;bottom:300px;">
+      <h3><b>Titre:</b></h3>
+      <h4><?php echo $film['titre'] ?></h4>
+      <h3><b>Réalisateur:</b></h3>
+      <h4><?php echo $film['auteur'] ?></h4>
+      <h3><b>Description:</b></h3>
+      <h4><?php echo $film['description'] ?></h4>
+      <h3><b>Catégorie:</b></h3>
+      <h4><?php echo $film['categorie'] ?></h4>
+      <h3><b>Prix:</b></h3>
+      <h4><?php echo $film['prix'] . "DT" ?></h4>
     </div>
-
-    <div class="row">
-    <?php 
-    foreach ($list[$filtre] as $key) {
-
-       ?>
-       
-       <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up">
-        <div class="icon-box">
-          <div class="icon"><i class="bx bxl-dribbble"></i></div>
-          <h4><a href=""><?php echo $key['titre']; ?> </a></h4>
-          <img  src="<?php echo $key['img']; ?>"  width="250"  height="250" alt="image"/>  
-          <p><?php echo $key['categorie']; ?> </p>
-          <form method="post">
-            <input type="submit" name="res<?php echo $key['id']?>" id="res<?php echo $key['id']?>" style="position:relative;right:-45px;" value="Reserver"/>
-            <input type="submit" name="profile<?php echo $key['id']?>" id="profile<?php echo $key['id']?>" style="position:relative;bottom:-35px;right:40px;" value="Voir plus"/>
-          </form>
-        </div>
-      </div>
-    <?php
-    }
-    ?>
-
-    </div>
-
+    
   </div>
 </section><!-- End Services Section -->
 <section id="clients" class="clients">

@@ -8,16 +8,20 @@
 		private $auteur;
 		private $date_ajout;
 		private $prix;
+		private $vente;
+		private $categorie;
 
     
 
-        function __construct($id, $titre, $description, $img , $auteur,$prix){
+        function __construct($id, $titre, $description, $img, $auteur, $prix, $vente, $categorie){
 			$this->id=$id;
 			$this->titre=$titre;
 			$this->description=$description;
 			$this->img=$img;
 			$this->auteur =$auteur;
 			$this->prix = $prix;
+			$this->vente = $vente;
+			$this->categorie = $categorie;
 		}
 
         function setid(string $id){
@@ -47,6 +51,12 @@
 		}
 		function getdate_ajout(){
 			return $this->date_ajout;
+		}
+		function get_vente(){
+			return $this->vente;
+		}
+		function get_categ(){
+			return $this->categorie;
 		}
 
         

@@ -31,11 +31,11 @@ h1, h2, h3, h4, h5, h6 {
 # Back to top button
 --------------------------------------------------------------*/
 .back-to-top {
-  position: fixed;
+  position:absolute;
   visibility: hidden;
   opacity: 0;
-  right: 15px;
-  bottom: 15px;
+  top: 50px;;
+  right:50px;
   z-index: 996;
   background: #cc1616;
   width: 40px;

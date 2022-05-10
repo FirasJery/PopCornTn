@@ -21,8 +21,20 @@
             }
         }
 
-
-
+        function afficherevenementCateg($string)
+        {
+            $requete = "select * from film where categorie=:categ";
+            $config = config::getConnexion();
+            try {
+                $querry = $config->prepare($requete);
+                $querry->execute(['categ'=>$string]);
+                //$result = $querry->fetchAll(PDO::FETCH_COLUMN, 1);
+                $result = $querry->fetchAll();
+                return $result ;
+            } catch (PDOException $th) {
+                 $th->getMessage();
+            }
+        }
 
         function getevenementbyID($id)
         {
@@ -61,21 +73,24 @@
             try {
                 $querry = $config->prepare('
                 INSERT INTO film
-                (titre,description,img,auteur,prix)
+                (titre, description, img, auteur, prix, vente, categorie)
                 VALUES
-                (:titre,:description,:img,:auteur,:prix)
+                (:titre, :description, :img, :auteur, :prix, :vente, :categorie)
                 ');
                 $querry->execute([
                     'titre'=>$film->gettitre(),
                     'description'=>$film->getdescription(),
                     'img'=>$film->getimg(),
                     'auteur'=>$film->getauteur(),
-                    'prix'=>$film->getPrix()
+                    'prix'=>$film->getPrix(),
+                    'vente'=>$film->get_vente(),
+                    'categorie'=>$film->get_categ()
                 ]);
             } catch (PDOException $th) {
                  $th->getMessage();
             }
         }
+        
         function modifierevenement($film)
         {
             $config = config::getConnexion();
@@ -114,5 +129,29 @@
 			catch (Exception $e){
 				die('Erreur: '.$e->getMessage());
 			}
+        }
+
+        function augmenterVente($string){
+            $requete = "update film set vente = vente + 1 where titre=:string";
+            $config = config::getConnexion();
+            try {
+                $querry = $config->prepare($requete);
+                $querry->execute(['string'=>$string]);
+            }
+            catch (PDOException $th) {
+                $th->getMessage();
+           }
+        }
+
+        function Noter($id, $review){
+            $requete = "update film set nb_avis = nb_avis + 1, note = ((note + :review) / nb_avis) where id=:id";
+            $config = config::getConnexion();
+            try {
+                $querry = $config->prepare($requete);
+                $querry->execute(['id'=>$id, 'review'=>$review]);
+            }
+            catch (PDOException $th) {
+                $th->getMessage();
+           } 
         }
     }

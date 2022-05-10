@@ -1,9 +1,12 @@
 <?php 
 include '../../Controller/evenementC.php';
+include '../../Controller/categC.php';
 include "head.php";
 require_once '../../model/evenement.php';
+require_once '../../model/categ.php';
 
 $filmC = new filmC();
+$categC = new CategC();
 if (isset($_GET['id'])) {
   $eventToEdit = $filmC->getevenementbyID($_GET['id']);
 }
@@ -51,10 +54,11 @@ if (isset($_REQUEST['add']) || isset($_REQUEST['edit'])) {
           echo 'aaaaaa';
           $filmC = new filmC();
           if (isset($_REQUEST['add'])) {
-            $film = new film(1, $_POST['titre'], $_POST['description'], $target_file, $_POST['auteur'], $_POST['prix']);
+            $film = new film(1, $_POST['titre'], $_POST['description'], $target_file, $_POST['auteur'], $_POST['prix'], 0, $_POST['categ']);
             $filmC->ajouterevenement($film);
+            $categC->augmenterFilms($_POST['categ']);
           } else if (isset($_REQUEST['edit'])) {
-          $film = new film($_POST['id'], $_POST['titre'], $_POST['description'], $target_file, $_POST['auteur'], $_POST['prix']);
+          $film = new film($_POST['id'], $_POST['titre'], $_POST['description'], $target_file, $_POST['auteur'], $_POST['prix'], $_POST['vente'], $_POST['categ']);
           $filmC->modifierevenement($film);
           }
           header('Location:blank.php');
@@ -96,19 +100,30 @@ include "side-bar.php";
                     ?>
                     <div class="form-group">
                       <label for="nom">nom</label>
-                      <input type="text" class="form-control" id="nom" name="titre" placeholder="nom" name="<?php if (isset($eventToEdit)) echo $eventToEdit['titre']  ?>"   >
+                      <input type="text" class="form-control" id="nom" name="titre" placeholder="nom" name="titre" value="<?php if (isset($eventToEdit)) echo $eventToEdit['titre']; ?>">
                     </div>
                     <div class="form-group">
                       <label for="description">description</label>
-                      <input type="textarea" class="form-control" id="description" name="description" placeholder="description" <?php if (isset($eventToEdit)) echo 'value".'.$eventToEdit['description'].'"' ?>  >
+                      <input type="textarea" class="form-control" id="description" name="description" placeholder="description" value="<?php if (isset($eventToEdit)) echo $eventToEdit['description'] ?>"  >
                     </div>
                     <div class="form-group">
                       <label for="Realisateur">Realisateur</label>
-                      <input type="text" class="form-control" id="Realisateur" placeholder="Realisateur" name="auteur"   <?php if (isset($eventToEdit)) echo 'value".'.$eventToEdit['auteur'].'"' ?>    >
+                      <input type="text" class="form-control" id="Realisateur" placeholder="Realisateur" name="auteur"   value="<?php if (isset($eventToEdit)) echo $eventToEdit['auteur'] ?>">
                     </div>
                     <div class="form-group">
                       <label for="Prix">Prix</label>
-                      <input type="number" class="form-control" id="Prix" placeholder="Prix" name="prix"      <?php if (isset($eventToEdit)) echo 'value".'.$eventToEdit['prix'].'"' ?>        >
+                      <input type="number" class="form-control" id="Prix" placeholder="Prix" name="prix" value="<?php if (isset($eventToEdit)) echo $eventToEdit['prix'] ?>" >
+                    </div>
+                    <div class="form-group">
+                      <label for="Prix">Categorie</label>
+                      <select name="categ" id="categ" value="<?php if (isset($eventToEdit)) echo $eventToEdit['categ'] ?>">
+                        <option>Action</option>
+                        <option>Drama</option>
+                        <option>Comédie</option>
+                        <option>Horreur</option>
+                        <option>Romance</option>
+                        <option>Sci-Fi</option>
+                      </select>
                     </div>
                     <div class="form-group">
                       <label for="date">Date</label>
@@ -117,7 +132,7 @@ include "side-bar.php";
                     
                     <div class="form-group">
                       <label>File upload</label>
-                      <input type="file" class="form-control" id="fileToUpload"  name="fileToUpload">
+                      <input type="file" class="form-control" id="fileToUpload"  name="fileToUpload" value="<?php if (isset($eventToEdit)) echo $eventToEdit['img'] ?>">
                     </div>
                     
                     <button type="submit" name="add" class="btn btn-primary me-2">Submit</button>
@@ -148,13 +163,13 @@ include "side-bar.php";
                             Realisateur
                           </th>
                           <th>
-                            Date
+                            Categorie
                           </th>
                           <th>
                             Prix
                           </th>
                           <th>
-                            affiche
+                            Affiche
                           </th>
                           <th>
                             Edit
@@ -178,7 +193,7 @@ include "side-bar.php";
                           <?php echo $key['auteur']; ?> 
                           </td>
                           <td>
-                          <?php echo $key['date_ajout']; ?>
+                          <?php echo $key['categorie']; ?>
                           </td>
                           <td>
                           <?php echo $key['prix']; ?>
