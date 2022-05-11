@@ -86,92 +86,92 @@ $listeEvents = $eventC->afficherevenement();
 
   <main id="main">
 
-<!-- ======= Breadcrumbs ======= -->
-<section id="breadcrumbs" class="breadcrumbs">
-  <div class="container">
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
 
-    <ol>
-      <li><a href="index.html">Home</a></li>
-      <li> Events </li>
-    </ol>
-    <h2>Events</h2>
-
-  </div>
-</section><!-- End Breadcrumbs -->
-
-<section class="inner-page">
-  <div class="container">
-   <!-- ======= Services Section ======= -->
-<section id="services" class="services">
-  <div class="container">
-
-    <div class="section-title">
-      
-      <h2>Events</h2>
-      <p>Cherchez vos évènements préférés</p>
-    </div>
-
-    <div class="row">
-     <?php foreach ($listeEvents as $key) {?>
-       
-       <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up">
-        <div class="icon-box">
-          <div class="icon"><i class="bi bi-card-text"></i></div>
-          <h4><a href=""><?php echo $key['titre']; ?> </a></h4>
-       <img  src="<?php echo $key['img']; ?>"  width="250"  height="250" alt="image"/>  
-          <p><?php echo $key['description']; ?> </p>
-          <h3> &nbsp; &nbsp; &nbsp; Sponsorisé par &nbsp; &nbsp; &nbsp; <br> </h3>
-          <h4> <a href=""><?php echo $key['nom_sponsor']; ?>  </a></h4>
-        </div>
-      </div>
-      <?php
-     }
-      ?>
-
-    </div>
-
-  </div>
-</section><!-- End Services Section -->
-<section id="clients" class="clients">
-      <div class="container" data-aos="zoom-in">
-
-        <div class="row d-flex align-items-center">
-
-          <div class="col-lg-2 col-md-4 col-6">
-            <img src="assets/img/clients/client-1.png" class="img-fluid" alt="">
-          </div>
-
-          <div class="col-lg-2 col-md-4 col-6">
-            <img src="assets/img/clients/client-2.png" class="img-fluid" alt="">
-          </div>
-
-          <div class="col-lg-2 col-md-4 col-6">
-            <img src="assets/img/clients/client-3.png" class="img-fluid" alt="">
-          </div>
-
-          <div class="col-lg-2 col-md-4 col-6">
-            <img src="assets/img/clients/client-4.png" class="img-fluid" alt="">
-          </div>
-
-          <div class="col-lg-2 col-md-4 col-6">
-            <img src="assets/img/clients/client-5.png" class="img-fluid" alt="">
-          </div>
-
-          <div class="col-lg-2 col-md-4 col-6">
-            <img src="assets/img/clients/client-6.png" class="img-fluid" alt="">
-          </div>
-
-        </div>
+        <ol>
+          <li><a href="index.html">Home</a></li>
+          <li> Events </li>
+        </ol>
+        <h2>Events</h2>
 
       </div>
-    </section><!-- End Clients Section -->
-   
-  </div>
-</section>
+    </section><!-- End Breadcrumbs -->
 
-</main><!-- End #main -->
+    <section class="inner-page">
+      <div class="container">
+        <!-- ======= Services Section ======= -->
+        <section id="services" class="services">
+          <div class="container">
 
-  
+            <div class="section-title">
+
+              <h2>Events</h2>
+              <p>Cherchez vos évènements préférés</p>
+            </div>
+
+            <div class="row">
+              <?php foreach ($listeEvents as $key) { ?>
+
+                <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up">
+                  <div class="icon-box">
+                    <div class="icon"><i class="bi bi-card-text"></i></div>
+                    <h4><a href=""><?php echo $key['titre']; ?> </a></h4>
+                    <img src="<?php echo $key['img']; ?>" width="250" height="250" alt="image" />
+                    <p><?php echo $key['description']; ?> </p>
+                    <h3> &nbsp; &nbsp; &nbsp; Sponsorisé par &nbsp; &nbsp; &nbsp; <br> </h3>
+                    <h4> <a href=""><?php echo $key['nom_sponsor']; ?> </a></h4>
+                  </div>
+                </div>
+              <?php
+              }
+              ?>
+
+            </div>
+
+          </div>
+        </section><!-- End Services Section -->
+        <section id="clients" class="clients">
+          <div class="container" data-aos="zoom-in">
+
+            <div class="row d-flex align-items-center">
+
+              <div class="col-lg-2 col-md-4 col-6">
+                <img src="assets/img/clients/client-1.png" class="img-fluid" alt="">
+              </div>
+
+              <div class="col-lg-2 col-md-4 col-6">
+                <img src="assets/img/clients/client-2.png" class="img-fluid" alt="">
+              </div>
+
+              <div class="col-lg-2 col-md-4 col-6">
+                <img src="assets/img/clients/client-3.png" class="img-fluid" alt="">
+              </div>
+
+              <div class="col-lg-2 col-md-4 col-6">
+                <img src="assets/img/clients/client-4.png" class="img-fluid" alt="">
+              </div>
+
+              <div class="col-lg-2 col-md-4 col-6">
+                <img src="assets/img/clients/client-5.png" class="img-fluid" alt="">
+              </div>
+
+              <div class="col-lg-2 col-md-4 col-6">
+                <img src="assets/img/clients/client-6.png" class="img-fluid" alt="">
+              </div>
+
+            </div>
+
+          </div>
+        </section><!-- End Clients Section -->
+
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+
 
   <!-- ======= Footer ======= -->
   <footer id="footer">

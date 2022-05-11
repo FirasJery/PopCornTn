@@ -1,4 +1,3 @@
-
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -21,5 +20,5 @@
   <!-- endinject -->
   <link rel="shortcut icon" href="images/favicon.png" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-  
+
 </head>

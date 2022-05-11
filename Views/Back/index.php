@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php include 'head.php' ; ?>
+<?php include 'head.php'; ?>
+
 <body>
   <div class="container-scroller">
     <div class="row p-0 m-0 proBanner" id="proBanner">
@@ -31,8 +32,12 @@
         <div id="theme-settings" class="settings-panel">
           <i class="settings-close ti-close"></i>
           <p class="settings-heading">SIDEBAR SKINS</p>
-          <div class="sidebar-bg-options selected" id="sidebar-light-theme"><div class="img-ss rounded-circle bg-light border me-3"></div>Light</div>
-          <div class="sidebar-bg-options" id="sidebar-dark-theme"><div class="img-ss rounded-circle bg-dark border me-3"></div>Dark</div>
+          <div class="sidebar-bg-options selected" id="sidebar-light-theme">
+            <div class="img-ss rounded-circle bg-light border me-3"></div>Light
+          </div>
+          <div class="sidebar-bg-options" id="sidebar-dark-theme">
+            <div class="img-ss rounded-circle bg-dark border me-3"></div>Dark
+          </div>
           <p class="settings-heading mt-2">HEADER SKINS</p>
           <div class="color-tiles mx-0 px-4">
             <div class="tiles success"></div>
@@ -226,7 +231,7 @@
                   </div>
                 </div>
                 <div class="tab-content tab-content-basic">
-                  <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview"> 
+                  <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview">
                     <div class="row">
                       <div class="col-sm-12">
                         <div class="statistics-details d-flex align-items-center justify-content-between">
@@ -262,7 +267,7 @@
                           </div>
                         </div>
                       </div>
-                    </div> 
+                    </div>
                     <div class="row">
                       <div class="col-lg-8 d-flex flex-column">
                         <div class="row flex-grow">
@@ -271,8 +276,8 @@
                               <div class="card-body">
                                 <div class="d-sm-flex justify-content-between align-items-start">
                                   <div>
-                                   <h4 class="card-title card-title-dash">Performance Line Chart</h4>
-                                   <h5 class="card-subtitle card-subtitle-dash">Lorem Ipsum is simply dummy text of the printing</h5>
+                                    <h4 class="card-title card-title-dash">Performance Line Chart</h4>
+                                    <h5 class="card-subtitle card-subtitle-dash">Lorem Ipsum is simply dummy text of the printing</h5>
                                   </div>
                                   <div id="performance-line-legend"></div>
                                 </div>
@@ -346,7 +351,7 @@
                                 <div class="d-sm-flex justify-content-between align-items-start">
                                   <div>
                                     <h4 class="card-title card-title-dash">Market Overview</h4>
-                                   <p class="card-subtitle card-subtitle-dash">Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+                                    <p class="card-subtitle card-subtitle-dash">Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
                                   </div>
                                   <div>
                                     <div class="dropdown">
@@ -363,8 +368,14 @@
                                   </div>
                                 </div>
                                 <div class="d-sm-flex align-items-center mt-1 justify-content-between">
-                                  <div class="d-sm-flex align-items-center mt-4 justify-content-between"><h2 class="me-2 fw-bold">$36,2531.00</h2><h4 class="me-2">USD</h4><h4 class="text-success">(+1.37%)</h4></div>
-                                  <div class="me-3"><div id="marketing-overview-legend"></div></div>
+                                  <div class="d-sm-flex align-items-center mt-4 justify-content-between">
+                                    <h2 class="me-2 fw-bold">$36,2531.00</h2>
+                                    <h4 class="me-2">USD</h4>
+                                    <h4 class="text-success">(+1.37%)</h4>
+                                  </div>
+                                  <div class="me-3">
+                                    <div id="marketing-overview-legend"></div>
+                                  </div>
                                 </div>
                                 <div class="chartjs-bar-wrapper mt-3">
                                   <canvas id="marketingOverview"></canvas>
@@ -394,7 +405,7 @@
                                 <div class="d-sm-flex justify-content-between align-items-start">
                                   <div>
                                     <h4 class="card-title card-title-dash">Pending Requests</h4>
-                                   <p class="card-subtitle card-subtitle-dash">You have 50+ new requests</p>
+                                    <p class="card-subtitle card-subtitle-dash">You have 50+ new requests</p>
                                   </div>
                                   <div>
                                     <button class="btn btn-primary btn-lg text-white mb-0 me-0" type="button"><i class="mdi mdi-account-plus"></i>Add new member</button>
@@ -421,7 +432,7 @@
                                         <td>
                                           <div class="form-check form-check-flat mt-0">
                                             <label class="form-check-label">
-                                            <input type="checkbox" class="form-check-input" aria-checked="false"><i class="input-helper"></i></label>
+                                              <input type="checkbox" class="form-check-input" aria-checked="false"><i class="input-helper"></i></label>
                                           </div>
                                         </td>
                                         <td>
@@ -448,13 +459,15 @@
                                             </div>
                                           </div>
                                         </td>
-                                        <td><div class="badge badge-opacity-warning">In progress</div></td>
+                                        <td>
+                                          <div class="badge badge-opacity-warning">In progress</div>
+                                        </td>
                                       </tr>
                                       <tr>
                                         <td>
                                           <div class="form-check form-check-flat mt-0">
                                             <label class="form-check-label">
-                                            <input type="checkbox" class="form-check-input" aria-checked="false"><i class="input-helper"></i></label>
+                                              <input type="checkbox" class="form-check-input" aria-checked="false"><i class="input-helper"></i></label>
                                           </div>
                                         </td>
                                         <td>
@@ -481,13 +494,15 @@
                                             </div>
                                           </div>
                                         </td>
-                                        <td><div class="badge badge-opacity-warning">In progress</div></td>
+                                        <td>
+                                          <div class="badge badge-opacity-warning">In progress</div>
+                                        </td>
                                       </tr>
                                       <tr>
                                         <td>
                                           <div class="form-check form-check-flat mt-0">
                                             <label class="form-check-label">
-                                            <input type="checkbox" class="form-check-input" aria-checked="false"><i class="input-helper"></i></label>
+                                              <input type="checkbox" class="form-check-input" aria-checked="false"><i class="input-helper"></i></label>
                                           </div>
                                         </td>
                                         <td>
@@ -514,13 +529,15 @@
                                             </div>
                                           </div>
                                         </td>
-                                        <td><div class="badge badge-opacity-warning">In progress</div></td>
+                                        <td>
+                                          <div class="badge badge-opacity-warning">In progress</div>
+                                        </td>
                                       </tr>
                                       <tr>
                                         <td>
                                           <div class="form-check form-check-flat mt-0">
                                             <label class="form-check-label">
-                                            <input type="checkbox" class="form-check-input" aria-checked="false"><i class="input-helper"></i></label>
+                                              <input type="checkbox" class="form-check-input" aria-checked="false"><i class="input-helper"></i></label>
                                           </div>
                                         </td>
                                         <td>
@@ -547,13 +564,15 @@
                                             </div>
                                           </div>
                                         </td>
-                                        <td><div class="badge badge-opacity-danger">Pending</div></td>
+                                        <td>
+                                          <div class="badge badge-opacity-danger">Pending</div>
+                                        </td>
                                       </tr>
                                       <tr>
                                         <td>
                                           <div class="form-check form-check-flat mt-0">
                                             <label class="form-check-label">
-                                            <input type="checkbox" class="form-check-input" aria-checked="false"><i class="input-helper"></i></label>
+                                              <input type="checkbox" class="form-check-input" aria-checked="false"><i class="input-helper"></i></label>
                                           </div>
                                         </td>
                                         <td>
@@ -580,7 +599,9 @@
                                             </div>
                                           </div>
                                         </td>
-                                        <td><div class="badge badge-opacity-success">Completed</div></td>
+                                        <td>
+                                          <div class="badge badge-opacity-success">Completed</div>
+                                        </td>
                                       </tr>
                                     </tbody>
                                   </table>
@@ -646,7 +667,7 @@
                                     </div>
                                   </div>
                                 </div>
-                                
+
                                 <div class="list align-items-center pt-3">
                                   <div class="wrapper w-100">
                                     <p class="mb-0">
@@ -962,4 +983,3 @@
 </body>
 
 </html>
-
