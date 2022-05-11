@@ -57,6 +57,18 @@
                 die('Erreur: '.$e->getMessage());
             }
         }	
+        function recuprole($id){
+            $db = config::getConnexion();
+            $sql="SELECT role FROM userc where email=$id";
+           
+            try{
+            $liste=$db->query($sql);
+            return $liste;
+            }
+            catch (Exception $e){
+                die('Erreur: '.$e->getMessage());
+            }
+        }	
           
 
         function connexionUser($email,$password)
@@ -81,6 +93,7 @@
 					$_SESSION['id'] = $result->id ;
 					$_SESSION['prenom']=$result->prenom ;
 					$_SESSION['email']=$result->email ;
+                    $_SESSION['role']=$result->role;
 					echo "$message";
 
 				}

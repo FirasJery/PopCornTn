@@ -1,43 +1,3 @@
-<?php
-session_start();
-include "../../controler/userCont.php";
-include_once '../../model/user.php';
-
-
-
-  $clientC = new userC();
-  $message="";
-if (isset($_POST["email"])&&
-isset($_POST["password"]))
-{ 
-    if (!empty($_POST["email"])&&
-    !empty($_POST["password"])
-       )
-       { 
-           $message=$clientC->connexionUser($_POST["email"],$_POST["password"]);
-          
-          
-           echo $message;
-           if ($message!='pseudo ou le mot de passe est incorrect')
-           {
-               header('Location:index.html');
-           }
-               else
-                 {
-               $message='pseudo ou le mot de passe est incorrect';
-               echo $message;
-               
-               
-                 }
-
-
-       }
-       else
-      { 
-        $message="Missing information";
-       echo $message;}
-}
-?>
 
 
 
@@ -79,45 +39,72 @@ isset($_POST["password"]))
 </head>
 
 <body>
-  <div class="container-scroller">
+  <!-- ======= Top Bar ======= -->
+  <section id="topbar" class="d-flex align-items-center">
+    <div class="container d-flex justify-content-center justify-content-md-between">
+      <div class="contact-info d-flex align-items-center">
+        <i class="bi bi-envelope-fill"></i><a href="PopCorn@esprit.tn">info@example.com</a>
+        <i class="bi bi-phone-fill phone-icon"></i> +1 5589 55488 55
+      </div>
+      <div class="social-links d-none d-md-block">
+        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <h1 class="logo"><a href="index.html">PopCorn.tn</a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      
+       <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="index.html">Home</a></li>
+  
+          
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+  <body>
+   <div class="container-scroller">
     <div class="container-fluid page-body-wrapper full-page-wrapper">
       <div class="content-wrapper d-flex align-items-center auth px-0">
         <div class="row w-100 mx-0">
           <div class="col-lg-4 mx-auto">
-            <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+            <div class="brand-logo-mini">
               <div class="brand-logo">
-                <img src="assets/img/Capture.png" alt="logo">
+                <img src="../back/images/logo.svg" alt="logo">
               </div>
-              <h4>Hello!</h4>
+              <h4>Hello! let's get started</h4>
               <h6 class="fw-light">Sign in to continue.</h6>
-              <form class="pt-3">
-                <div class="form-group">
-                  <input type="email" class="form-control form-control-lg" id="login" placeholder="Username">
-                </div>
-                <div class="form-group">
-                  <input type="password" class="form-control form-control-lg" id="password" placeholder="Password">
-                </div>
-                <div class="mt-3">
-                  <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="index.html">SIGN IN</a>
-                </div>
-                <div class="my-2 d-flex justify-content-between align-items-center">
-                  <div class="form-check">
-                    <label class="form-check-label text-muted">
-                      <input type="checkbox" class="form-check-input">
-                      Keep me signed in
-                    </label>
-                  </div>
-                  <a href="#" class="auth-link text-black">Forgot password?</a>
-                </div>
-                <div class="mb-2">
-                  <button type="button" class="btn btn-block btn-facebook auth-form-btn">
-                    <i class="ti-facebook me-2"></i>Connect using facebook
-                  </button>
-                </div>
-                <div class="text-center mt-4 fw-light">
-                  Don't have an account? <a href="index.html" class="text-primary">Create</a>
-                </div>
-              </form>
+              <form id="contact" action="verify.php" method="post">
+        <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+        <form action="" method="POST">                                              
+            <input id="email" name="email" type="text" class="form-control form-control-lg" placeholder="Email" required="" pattern=".+@gmail.com|.+@esprit.tn|.+@Gmail.com">
+            </fieldset>
+            <fieldset>                                              
+            <input id="password" name="password" type="password" class="form-control form-control-lg" placeholder="Password" required="">
+            </fieldset>
+        </div>
+        <div class="col-lg-12">
+            <fieldset>
+            <button type="submit" id="form-submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">Submit</button>
+            <button type="reset" id="form-submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">Reset</button>
+            </fieldset>
+        </div>
+        </div>
+    </form>
             </div>
           </div>
         </div>
@@ -125,7 +112,15 @@ isset($_POST["password"]))
       <!-- content-wrapper ends -->
     </div>
     <!-- page-body-wrapper ends -->
-  </div>
+   </div>
+  
+
+</div>
+<div>
+</div>
+</div>
+</div>
+ 
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact">
       <div class="container">
