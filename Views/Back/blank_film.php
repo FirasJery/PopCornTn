@@ -1,8 +1,8 @@
 <?php 
-include '../../Controller/filmC.php';
+include '../../Controller/evenementC.php';
 include '../../Controller/categC.php';
 include "head.php";
-require_once '../../model/film.php';
+require_once '../../model/evenement.php';
 require_once '../../model/categ.php';
 
 $filmC = new filmC();
@@ -48,7 +48,7 @@ if (isset($_REQUEST['add']) || isset($_REQUEST['edit'])) {
     //  $uploadOk = 0;
   }
   if ($uploadOk == 0) {
-      header('Location:blank_film.php?error=1');
+      header('Location:blank.php?error=1');
   } else {
       if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
           echo 'aaaaaa';
@@ -61,10 +61,10 @@ if (isset($_REQUEST['add']) || isset($_REQUEST['edit'])) {
           $film = new film($_POST['id'], $_POST['titre'], $_POST['description'], $target_file, $_POST['auteur'], $_POST['prix'], $_POST['vente'], $_POST['categ']);
           $filmC->modifierevenement($film);
           }
-          header('Location:blank_film.php');
+          header('Location:blank.php');
       } else {
           echo 'chyyyyyyyy2';
-          header('Location:blank_film.php');
+          header('Location:blank.php');
       }
   }
 }
@@ -90,7 +90,7 @@ include "side-bar.php";
                 <div class="card-body">
                   <h4 class="card-title">Formulaire Film</h4>
                   
-                  <form class="forms-sample" action="" enctype="multipart/form-data" method="POST">
+                  <form class="forms-sample" action="" enctype="multipart/form-data" method="POST" onchange="Verif();">
                     <?php if (isset($eventToEdit)) {?>
                          <div class="form-group">
                       <label for="id">id</label>
@@ -99,20 +99,24 @@ include "side-bar.php";
                       <?php  }
                     ?>
                     <div class="form-group">
-                      <label for="nom">nom</label>
+                      <label for="nom">Titre</label>
                       <input type="text" class="form-control" id="nom" name="titre" placeholder="nom" name="titre" value="<?php if (isset($eventToEdit)) echo $eventToEdit['titre']; ?>">
+                      <label id="e1"></label>
                     </div>
                     <div class="form-group">
                       <label for="description">description</label>
                       <input type="textarea" class="form-control" id="description" name="description" placeholder="description" value="<?php if (isset($eventToEdit)) echo $eventToEdit['description'] ?>"  >
+                      <label id="e2"></label>
                     </div>
                     <div class="form-group">
                       <label for="Realisateur">Realisateur</label>
                       <input type="text" class="form-control" id="Realisateur" placeholder="Realisateur" name="auteur"   value="<?php if (isset($eventToEdit)) echo $eventToEdit['auteur'] ?>">
+                      <label id="e3"></label>
                     </div>
                     <div class="form-group">
                       <label for="Prix">Prix</label>
                       <input type="number" class="form-control" id="Prix" placeholder="Prix" name="prix" value="<?php if (isset($eventToEdit)) echo $eventToEdit['prix'] ?>" >
+                      <label id="e4"></label>
                     </div>
                     <div class="form-group">
                       <label for="Prix">Categorie</label>
@@ -202,7 +206,7 @@ include "side-bar.php";
                             <img src="<?php echo $key['img']; ?>" alt="image"/>
                           </td>
                           <td>
-                            <a href="blank_film.php?id=<?php echo $key['id']; ?>" >
+                            <a href="blank.php?id=<?php echo $key['id']; ?>" >
                             <button type="button" class="btn btn-dark btn-icon-text">
                                 Edit
                                   <i class="ti-file btn-icon-append"></i>                          
@@ -211,7 +215,7 @@ include "side-bar.php";
 
                           </td>
                           <td>
-                          <a href="deleteFilm.php?id=<?php echo $key['id']; ?>">
+                          <a href="deleteEvent.php?id=<?php echo $key['id']; ?>">
                           <button type="button" class="btn btn-danger">Delete</button>
                           </td>
                         </a>
@@ -249,6 +253,7 @@ include "side-bar.php";
   <script src="../../js/file-upload.js"></script>
   <script src="../../js/typeahead.js"></script>
   <script src="../../js/select2.js"></script>
+  <script src="controle.js"></script>
   <!-- End custom js for this page-->
 </body>
 
