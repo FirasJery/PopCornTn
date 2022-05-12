@@ -75,7 +75,7 @@ include 'head.php';
 
     <div class="section-title">
       
-      <h2><?php echo $film['titre'] ?></h2>
+      <h1><?php echo $film['titre'] ?></h1>
       <p>Cherchez vos Films préférés</p>
     </div>
     <img  src="<?php echo $film["img"] ?>"  width="250"  height="250" alt="image"/>

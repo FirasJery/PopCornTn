@@ -248,7 +248,17 @@ include "side-bar.php";
                   </div>
                 </div>
               </div>
+              
             </div>
+            <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">Charts</h4>
+                <a href="Charts.php">
+                  <button class="btn btn-danger">Voir stats</button>
+              </div>
+            </div>
+          </div>
           </div>
         </div>
 

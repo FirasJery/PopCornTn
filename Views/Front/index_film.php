@@ -1,6 +1,6 @@
 <?php
-include '../../Controller/evenementC.php';
-require_once '../../model/evenement.php';
+include '../../Controller/filmC.php';
+require_once '../../Model/film.php';
 
 
 session_start();
@@ -24,9 +24,6 @@ foreach($list["Pas de filtres"] as $key){
     $_SESSION['sq'] = $key["id"];
     header("Location:profile.php");
   }
-}
-if(isset($_POST["stat"])){
-  header("Location:stat.php");
 }
 ?>
 <!DOCTYPE html>
@@ -68,45 +65,9 @@ if(isset($_POST["stat"])){
 
 <body>
 
-  <!-- ======= Top Bar ======= -->
-  <section id="topbar" class="d-flex align-items-center">
-    <div class="container d-flex justify-content-center justify-content-md-between">
-      <div class="contact-info d-flex align-items-center">
-        <i class="bi bi-envelope-fill"></i><a href="mailto:contact@example.com">info@example.com</a>
-        <i class="bi bi-phone-fill phone-icon"></i> +1 5589 55488 55
-      </div>
-      <div class="social-links d-none d-md-block">
-        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ======= Header ======= -->
-  <header id="header" class="d-flex align-items-center">
-    <div class="container d-flex align-items-center justify-content-between">
-
-      <h1 class="logo"><a href="index.html"> PopCornTn </a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto " href="index.html">Home</a></li>
-          <li><a class="nav-link scrollto" href="#about">About</a></li>
-          <li><a class="nav-link scrollto" href="events.php">Films</a></li>
-          <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
-          <li><a class="nav-link scrollto" href="#pricing">Pricing</a></li>
-          <li><a class="nav-link scrollto" href="#team">Team</a></li>
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-
-    </div>
-  </header><!-- End Header -->
+<?php
+include 'head.php';
+?>
 
   <main id="main">
 
@@ -115,7 +76,7 @@ if(isset($_POST["stat"])){
   <div class="container">
 
     <ol>
-      <li><a href="index.html">Home</a></li>
+      <li><a href="index_2.php">Accueil</a></li>
       <li> Films </li>
     </ol>
     <h2>Films</h2>
@@ -131,7 +92,7 @@ if(isset($_POST["stat"])){
 
     <div class="section-title">
       
-      <h2>Films</h2>
+      <h1>Films</h1>
       <p>Cherchez vos Films préférés</p>
       <form action="" method="post">
         <select name="categ" id="categ" value="Pas de filtres">
@@ -172,47 +133,43 @@ if(isset($_POST["stat"])){
     </div>
 
   </div>
-  <form action="" method="POST">
-    <input type="submit" name="stat" id="stat" value="Classements" style="position:relative;right:-600;top:20px;">
-  </form>
 </section><!-- End Services Section -->
-<section id="clients" class="clients">
-      <div class="container" data-aos="zoom-in">
+<!-- ======= Contact Section ======= -->
+<section id="contact" class="contact">
+      <div class="container">
 
-        <div class="row d-flex align-items-center">
-
-          <div class="col-lg-2 col-md-4 col-6">
-            <img src="assets/img/clients/client-1.png" class="img-fluid" alt="">
+       
+        <div class="row" data-aos="fade-up">
+          <div class="col-lg-6">
+            <div class="info-box mb-4">
+              <i class="bx bx-map"></i>
+              <h3>Our Address</h3>
+              <p>PARC TECHNOLOGIQUE
+                2088 ARIANA</p>
+            </div>
           </div>
 
-          <div class="col-lg-2 col-md-4 col-6">
-            <img src="assets/img/clients/client-2.png" class="img-fluid" alt="">
+          <div class="col-lg-3 col-md-6">
+            <div class="info-box  mb-4">
+              <i class="bx bx-envelope"></i>
+              <h3>Email Us</h3>
+              <p>Popcorn@esprit.tn</p>
+            </div>
           </div>
 
-          <div class="col-lg-2 col-md-4 col-6">
-            <img src="assets/img/clients/client-3.png" class="img-fluid" alt="">
-          </div>
-
-          <div class="col-lg-2 col-md-4 col-6">
-            <img src="assets/img/clients/client-4.png" class="img-fluid" alt="">
-          </div>
-
-          <div class="col-lg-2 col-md-4 col-6">
-            <img src="assets/img/clients/client-5.png" class="img-fluid" alt="">
-          </div>
-
-          <div class="col-lg-2 col-md-4 col-6">
-            <img src="assets/img/clients/client-6.png" class="img-fluid" alt="">
+          <div class="col-lg-3 col-md-6">
+            <div class="info-box  mb-4">
+              <i class="bx bx-phone-call"></i>
+              <h3>Call Us</h3>
+              <p>+1 5589 55488 55</p>
+            </div>
           </div>
 
         </div>
 
+        
       </div>
-    </section><!-- End Clients Section -->
-    <p align = "center">
-     End 
-    </p>
-  </div>
+    </section><!-- End Contact Section -->
 </section>
 
 </main><!-- End #main -->

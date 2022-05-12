@@ -55,7 +55,7 @@ include 'head.php';
       <div class="container">
 
         <div class="section-title">
-          <span>Equipe</span>
+          
           <h1>Equipe</h1>
           
         </div>
@@ -95,26 +95,7 @@ include 'head.php';
               <img src="assets/img/team/team-4.jpg" alt="">
               <h4>SAHNOUN Ghassen</h4>
               <span>Gestion des Salles</span>
-             
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in">
-            <div class="member">
-              <img src="assets/img/team/team-5.jpg" alt="">
-              <h4>RIAHI Yassine </h4>
-              <span>Gestion des réservations</span>
-             
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in">
-            <div class="member">
-              <img src="assets/img/team/team-6.jpg" alt="">
-              <h4>BENROMDHANE Roua</h4>
-              <span>Gestion des nouvelles sorties</span>
-              
-            </div>
-          </div>
+            
           
 
 

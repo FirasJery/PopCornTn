@@ -3,7 +3,7 @@ include '../../Controller/salleC.php';
 require_once '../../model/salle.php';
 
 $salleC = new salleC();
-$listesalles = $salleC->affichersalle();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,12 +41,21 @@ $listesalles = $salleC->affichersalle();
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 </head>
-
+<?php 
+if(isset($_REQUEST['search'])){
+  $listesalles=$salleC->searchsalle($_POST['search_text']);
+  
+}
+else {
+  $listesalles = $salleC->affichersalle();
+}
+?>
 <body>
 
 <?php
 include 'head.php';
 ?>
+
 
   <main id="main">
 
@@ -55,23 +64,27 @@ include 'head.php';
       <div class="container">
 
         <ol>
-          <li><a href="index.php">Acceuil</a></li>
+          <li><a href="index_2.php">Acceuil</a></li>
           <li> Salles </li>
         </ol>
-        <h2>Salles</h2>
+        <h1>Salles</h1>
 
       </div>
     </section><!-- End Breadcrumbs -->
 
     <section class="inner-page">
       <div class="container">
+      <form class="forms-sample" action="" enctype="multipart/from-data" method="POST">
+  <input  class="form-control" name="search_text" type="text" placeholder="Rechercher Salles.."></input>
+  <button type="submit" name="search" class="btn btn-outline-primary">Search</button>
+</form>
         <!-- ======= Services Section ======= -->
         <section id="services" class="services">
           <div class="container">
 
             <div class="section-title">
 
-              <h2>Salles</h2>
+              <h1>Salles</h1>
               <p>decouvrez nos salles</p>
             </div>
 

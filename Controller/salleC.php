@@ -19,7 +19,19 @@
                  $th->getMessage();
             }
         }
-
+        function searchsalle($search)
+        {
+            $requete = "select * from salle  WHERE Nom LIKE '%$search%'";
+            $config = config::getConnexion();
+            try {
+                $querry = $config->prepare($requete);
+                $querry->execute();
+                $result = $querry->fetchAll();
+                return $result ;
+            } catch (PDOException $th) {
+                 $th->getMessage();
+            }
+        }
 
 
 

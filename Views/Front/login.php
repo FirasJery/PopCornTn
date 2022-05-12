@@ -59,14 +59,14 @@
   <header id="header" class="d-flex align-items-center">
     <div class="container d-flex align-items-center justify-content-between">
 
-      <h1 class="logo"><a href="index.html">PopCorn.tn</a></h1>
+      <h1 class="logo"><a href="index.php">PopCorn.tn</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       
-       <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>
+       <a href="index.php" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="index.html">Home</a></li>
+          <li><a class="nav-link scrollto active" href="index.php">Accueil</a></li>
   
           
         </ul>
@@ -76,31 +76,34 @@
     </div>
   </header><!-- End Header -->
   <body>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
    <div class="container-scroller">
     <div class="container-fluid page-body-wrapper full-page-wrapper">
       <div class="content-wrapper d-flex align-items-center auth px-0">
         <div class="row w-100 mx-0">
           <div class="col-lg-4 mx-auto">
             <div class="brand-logo-mini">
-              <div class="brand-logo">
-                <img src="../back/images/logo.svg" alt="logo">
-              </div>
-              <h4>Hello! let's get started</h4>
-              <h6 class="fw-light">Sign in to continue.</h6>
+              
+              <h4>Bonjour! Connectez-vous</h4>
+              
               <form id="contact" action="verify.php" method="post">
         <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12">
         <form action="" method="POST">                                              
-            <input id="email" name="email" type="text" class="form-control form-control-lg" placeholder="Email" required="" pattern=".+@gmail.com|.+@esprit.tn|.+@Gmail.com">
+            <input id="email" name="email" type="text" class="form-control form-control-lg" placeholder="Adresse mail" required="" pattern=".+@gmail.com|.+@esprit.tn|.+@Gmail.com">
             </fieldset>
             <fieldset>                                              
-            <input id="password" name="password" type="password" class="form-control form-control-lg" placeholder="Password" required="">
+            <input id="password" name="password" type="password" class="form-control form-control-lg" placeholder="mot de passe" required="">
             </fieldset>
         </div>
         <div class="col-lg-12">
             <fieldset>
-            <button type="submit" id="form-submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">Submit</button>
-            <button type="reset" id="form-submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">Reset</button>
+            <button type="submit" id="form-submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">Connecter</button>
+            <button type="reset" id="form-submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">Effacer</button>
             </fieldset>
         </div>
         </div>
