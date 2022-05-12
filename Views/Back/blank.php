@@ -90,7 +90,7 @@ include "side-bar.php";
                 <div class="card-body">
                   <h4 class="card-title">Formulaire Film</h4>
                   
-                  <form class="forms-sample" action="" enctype="multipart/form-data" method="POST">
+                  <form class="forms-sample" action="" enctype="multipart/form-data" method="POST" onchange="Verif();">
                     <?php if (isset($eventToEdit)) {?>
                          <div class="form-group">
                       <label for="id">id</label>
@@ -99,20 +99,24 @@ include "side-bar.php";
                       <?php  }
                     ?>
                     <div class="form-group">
-                      <label for="nom">nom</label>
+                      <label for="nom">Titre</label>
                       <input type="text" class="form-control" id="nom" name="titre" placeholder="nom" name="titre" value="<?php if (isset($eventToEdit)) echo $eventToEdit['titre']; ?>">
+                      <label id="e1"></label>
                     </div>
                     <div class="form-group">
                       <label for="description">description</label>
                       <input type="textarea" class="form-control" id="description" name="description" placeholder="description" value="<?php if (isset($eventToEdit)) echo $eventToEdit['description'] ?>"  >
+                      <label id="e2"></label>
                     </div>
                     <div class="form-group">
                       <label for="Realisateur">Realisateur</label>
                       <input type="text" class="form-control" id="Realisateur" placeholder="Realisateur" name="auteur"   value="<?php if (isset($eventToEdit)) echo $eventToEdit['auteur'] ?>">
+                      <label id="e3"></label>
                     </div>
                     <div class="form-group">
                       <label for="Prix">Prix</label>
                       <input type="number" class="form-control" id="Prix" placeholder="Prix" name="prix" value="<?php if (isset($eventToEdit)) echo $eventToEdit['prix'] ?>" >
+                      <label id="e4"></label>
                     </div>
                     <div class="form-group">
                       <label for="Prix">Categorie</label>
@@ -249,6 +253,7 @@ include "side-bar.php";
   <script src="../../js/file-upload.js"></script>
   <script src="../../js/typeahead.js"></script>
   <script src="../../js/select2.js"></script>
+  <script src="controle.js"></script>
   <!-- End custom js for this page-->
 </body>
 

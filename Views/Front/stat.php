@@ -2,32 +2,22 @@
 include '../../Controller/evenementC.php';
 require_once '../../model/evenement.php';
 
-
 session_start();
+$filtre = "vente";
 $filmC = new filmC();
-$list['Pas de filtres'] = $filmC->afficherevenement();
-$list['Action'] = $filmC->afficherevenementCateg("Action");
-$list['Drama'] = $filmC->afficherevenementCateg("Drama");
-$list['Comédie'] = $filmC->afficherevenementCateg("Comédie");
-$list['Horreur'] = $filmC->afficherevenementCateg("Horreur");
-$list['Romance'] = $filmC->afficherevenementCateg("Romance");
-$list['Sci-Fi'] = $filmC->afficherevenementCateg("Sci-Fi");
-$filtre = "Pas de filtres";
-if(isset($_POST['search'])){
-  $filtre = $_POST["categ"];
+$film["vente"] = $filmC->TriVentes();
+$film["venteA"] = $filmC->TriVentesA();
+$film["avis"] = $filmC->TriAvis();
+$film["avisA"] = $filmC->TriAvisA();
+if(isset($_POST["test"])){ 
+  $filmC->Noter($_SESSION['sq'], $_POST["note"]);
+  header("Location:profile.php");
 }
-foreach($list["Pas de filtres"] as $key){
-  if(isset($_POST["res" . $key["id"]])){
-    $filmC->augmenterVente($key["titre"]);
-  }
-  if(isset($_POST["profile" . $key["id"]])){
-    $_SESSION['sq'] = $key["id"];
-    header("Location:profile.php");
-  }
+if(isset($_POST['tri'])){
+  $filtre = $_POST["filtre"];
+  $_SESSION['filtre'] = $filtre;
 }
-if(isset($_POST["stat"])){
-  header("Location:stat.php");
-}
+echo $_SESSION['filtre'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -96,7 +86,7 @@ if(isset($_POST["stat"])){
         <ul>
           <li><a class="nav-link scrollto " href="index.html">Home</a></li>
           <li><a class="nav-link scrollto" href="#about">About</a></li>
-          <li><a class="nav-link scrollto" href="events.php">Films</a></li>
+          <li><a class="nav-link scrollto" href="index.php">Films</a></li>
           <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
           <li><a class="nav-link scrollto" href="#pricing">Pricing</a></li>
           <li><a class="nav-link scrollto" href="#team">Team</a></li>
@@ -131,50 +121,61 @@ if(isset($_POST["stat"])){
 
     <div class="section-title">
       
-      <h2>Films</h2>
+      <h2><?php echo "Classements" ?></h2>
       <p>Cherchez vos Films préférés</p>
-      <form action="" method="post">
-        <select name="categ" id="categ" value="Pas de filtres">
-          <option value="Pas de filtres">Pas de filtres</option>
-          <option value="Action">Action</option>
-          <option value="Drama">Drama</option>
-          <option value="Comédie">Comédie</option>
-          <option value="Horreur">Horreur</option>
-          <option value="Romance">Romance</option>
-          <option value="Sci-Fi">Sci-Fi</option>
-        </select>
-        <input type="submit" name="search" value="Go"/>
-      </form>
     </div>
-
-    <div class="row">
-    <?php 
-    foreach ($list[$filtre] as $key) {
-
-       ?>
-       
-       <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up">
-        <div class="icon-box">
-          <div class="icon"><i class="bx bxl-dribbble"></i></div>
-          <h4><a href=""><?php echo $key['titre']; ?> </a></h4>
-          <img  src="<?php echo $key['img']; ?>"  width="250"  height="250" alt="image"/>  
-          <p><?php echo $key['categorie']; ?> </p>
-          <form method="post">
-            <input type="submit" name="res<?php echo $key['id']?>" id="res<?php echo $key['id']?>" style="position:relative;right:-45px;" value="Reserver"/>
-            <input type="submit" name="profile<?php echo $key['id']?>" id="profile<?php echo $key['id']?>" style="position:relative;bottom:-35px;right:40px;" value="Voir plus"/>
-          </form>
-        </div>
-      </div>
-    <?php
-    }
-    ?>
-
-    </div>
-
+    <h4><a href=""><?php echo "Note:" . number_format((float)$film["avis"][0]["note"], 1, '.', ''). "/5" ?> </a></h4>
+    <form action="" method="POST">
+      <select name="filtre" id="filtre">
+        <option value="vente">Ventes</option>
+        <option value="venteA">Ventes Ascendant</option>
+        <option value="avis">Avis</option>
+        <option value="avisA">Avis Ascendant</option>
+      </select>
+      <input type="submit" name="tri" id="tri" value="Go">
+    </form>
+    <table style="border: 1px solid black;border-collapse:collapse;width:50%;">
+      <tr>
+        <th style="border: 1px solid black;border-collapse:collapse;"></th>
+        <th style="border: 1px solid black;border-collapse:collapse;text-align: center;"><?php echo "Titre"?></th>
+        <th style="border: 1px solid black;border-collapse:collapse;text-align: center;"><?php echo "Realisateur"?></th>
+        <th style="border: 1px solid black;border-collapse:collapse;text-align: center;<?php 
+          if(($_SESSION['filtre'] == "vente")||($_SESSION['filtre'] == "venteA"))
+            {
+              echo "color:red;";
+            }
+        ?>"><?php 
+        if(($_SESSION['filtre'] == "vente")||($_SESSION['filtre'] == "venteA")){echo "<b>";} 
+        echo "Vente";
+        if(($_SESSION['filtre'] == "vente")||($_SESSION['filtre'] == "venteA")){echo "</b>";}
+        ?></th>
+        <th style="border: 1px solid black;border-collapse:collapse;text-align: center;"><?php echo "Prix"?></th>
+        <th style="border: 1px solid black;border-collapse:collapse;text-align: center;<?php 
+          if(($_SESSION['filtre'] == "avis")||($_SESSION['filtre'] == "avisA"))
+            {
+              echo "color:red;";
+            }
+        ?>"><?php 
+        if(($_SESSION['filtre'] == "avis")||($_SESSION['filtre'] == "avisA")){echo "<b>";} 
+        echo "Note";
+        if(($_SESSION['filtre'] == "avis")||($_SESSION['filtre'] == "avisA")){echo "</b>";}
+        ?></th>
+      </tr>
+      <?php foreach ($film[$filtre] as $key) {
+      ?>
+      <tr>
+        <td style="border: 1px solid black;border-collapse:collapse;text-align: center;"><img  src="<?php echo $key["img"] ?>"  width="75"  height="75" alt="image"/></td>
+        <td style="border: 1px solid black;border-collapse:collapse;text-align: center;"><?php echo $key["titre"]?></td>
+        <td style="border: 1px solid black;border-collapse:collapse;text-align: center;"><?php echo $key["auteur"]?></td>
+        <td style="border: 1px solid black;border-collapse:collapse;text-align: center;"><?php echo $key["vente"]?></td>
+        <td style="border: 1px solid black;border-collapse:collapse;text-align: center;"><?php echo $key["prix"] . "DT"?></td>
+        <td style="border: 1px solid black;border-collapse:collapse;text-align: center;"><?php echo number_format((float)$key["note"], 1, '.', ''). "/5" ?></td>
+      </tr>
+      <?php
+      }
+      ?>
+    </table>
   </div>
-  <form action="" method="POST">
-    <input type="submit" name="stat" id="stat" value="Classements" style="position:relative;right:-600;top:20px;">
-  </form>
 </section><!-- End Services Section -->
 <section id="clients" class="clients">
       <div class="container" data-aos="zoom-in">

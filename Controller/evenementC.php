@@ -154,4 +154,59 @@
                 $th->getMessage();
            } 
         }
+
+        function TriVentes(){
+            $requete = "select * from film ORDER BY vente desc";
+            $config = config::getConnexion();
+            try {
+                $querry = $config->prepare($requete);
+                $querry->execute();
+                //$result = $querry->fetchAll(PDO::FETCH_COLUMN, 1);
+                $result = $querry->fetchAll();
+                return $result ;
+            } catch (PDOException $th) {
+                 $th->getMessage();
+            }
+        }
+        function TriVentesA(){
+            $requete = "select * from film ORDER BY vente asc";
+            $config = config::getConnexion();
+            try {
+                $querry = $config->prepare($requete);
+                $querry->execute();
+                //$result = $querry->fetchAll(PDO::FETCH_COLUMN, 1);
+                $result = $querry->fetchAll();
+                return $result ;
+            } catch (PDOException $th) {
+                 $th->getMessage();
+            }
+        }
+
+        function TriAvis(){
+            $requete = "select * from film ORDER BY note desc";
+            $config = config::getConnexion();
+            try {
+                $querry = $config->prepare($requete);
+                $querry->execute();
+                //$result = $querry->fetchAll(PDO::FETCH_COLUMN, 1);
+                $result = $querry->fetchAll();
+                return $result ;
+            } catch (PDOException $th) {
+                 $th->getMessage();
+            } 
+        }
+
+        function TriAvisA(){
+            $requete = "select * from film ORDER BY note asc";
+            $config = config::getConnexion();
+            try {
+                $querry = $config->prepare($requete);
+                $querry->execute();
+                //$result = $querry->fetchAll(PDO::FETCH_COLUMN, 1);
+                $result = $querry->fetchAll();
+                return $result ;
+            } catch (PDOException $th) {
+                 $th->getMessage();
+            } 
+        }
     }
