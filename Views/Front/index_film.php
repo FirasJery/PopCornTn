@@ -76,7 +76,7 @@ include 'head.php';
   <div class="container">
 
     <ol>
-      <li><a href="index.html">Home</a></li>
+      <li><a href="index_2.php">Accueil</a></li>
       <li> Films </li>
     </ol>
     <h2>Films</h2>
@@ -92,7 +92,7 @@ include 'head.php';
 
     <div class="section-title">
       
-      <h2>Films</h2>
+      <h1>Films</h1>
       <p>Cherchez vos Films préférés</p>
       <form action="" method="post">
         <select name="categ" id="categ" value="Pas de filtres">
@@ -134,43 +134,42 @@ include 'head.php';
 
   </div>
 </section><!-- End Services Section -->
-<section id="clients" class="clients">
-      <div class="container" data-aos="zoom-in">
+<!-- ======= Contact Section ======= -->
+<section id="contact" class="contact">
+      <div class="container">
 
-        <div class="row d-flex align-items-center">
-
-          <div class="col-lg-2 col-md-4 col-6">
-            <img src="assets/img/clients/client-1.png" class="img-fluid" alt="">
+       
+        <div class="row" data-aos="fade-up">
+          <div class="col-lg-6">
+            <div class="info-box mb-4">
+              <i class="bx bx-map"></i>
+              <h3>Our Address</h3>
+              <p>PARC TECHNOLOGIQUE
+                2088 ARIANA</p>
+            </div>
           </div>
 
-          <div class="col-lg-2 col-md-4 col-6">
-            <img src="assets/img/clients/client-2.png" class="img-fluid" alt="">
+          <div class="col-lg-3 col-md-6">
+            <div class="info-box  mb-4">
+              <i class="bx bx-envelope"></i>
+              <h3>Email Us</h3>
+              <p>Popcorn@esprit.tn</p>
+            </div>
           </div>
 
-          <div class="col-lg-2 col-md-4 col-6">
-            <img src="assets/img/clients/client-3.png" class="img-fluid" alt="">
-          </div>
-
-          <div class="col-lg-2 col-md-4 col-6">
-            <img src="assets/img/clients/client-4.png" class="img-fluid" alt="">
-          </div>
-
-          <div class="col-lg-2 col-md-4 col-6">
-            <img src="assets/img/clients/client-5.png" class="img-fluid" alt="">
-          </div>
-
-          <div class="col-lg-2 col-md-4 col-6">
-            <img src="assets/img/clients/client-6.png" class="img-fluid" alt="">
+          <div class="col-lg-3 col-md-6">
+            <div class="info-box  mb-4">
+              <i class="bx bx-phone-call"></i>
+              <h3>Call Us</h3>
+              <p>+1 5589 55488 55</p>
+            </div>
           </div>
 
         </div>
 
+        
       </div>
-    </section><!-- End Clients Section -->
-    <p align = "center">
-     End 
-    </p>
-  </div>
+    </section><!-- End Contact Section -->
 </section>
 
 </main><!-- End #main -->

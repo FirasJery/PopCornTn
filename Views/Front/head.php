@@ -18,18 +18,17 @@
   <header id="header" class="d-flex align-items-center">
     <div class="container d-flex align-items-center justify-content-between">
 
-      <h1 class="logo"><a href="index.php"> PopCornTn </a></h1>
+      <h1 class="logo"><a href="index_2.php"> PopCornTn </a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto " href="index.php">Acceuil</a></li>
-          <li><a class="nav-link scrollto" href="#about">A propos </a></li>
+          <li><a class="nav-link scrollto " href="index_2.php">Accueil</a></li>
           <li><a class="nav-link scrollto " href="index_film.php">Films</a></li>
           <li><a class="nav-link scrollto" href="events.php">Evenements</a></li>
-          <li><a class="nav-link scrollto" href="#pricing">Salles</a></li>
-          <li><a class="nav-link scrollto" href="#team">Equipe</a></li>
+          <li><a class="nav-link scrollto" href="salles.php">Salles</a></li>
+          <li><a class="nav-link scrollto" href="index_2.php#team">Equipe</a></li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
