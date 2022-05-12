@@ -124,7 +124,6 @@ echo $_SESSION['filtre'];
       <h2><?php echo "Classements" ?></h2>
       <p>Cherchez vos Films préférés</p>
     </div>
-    <h4><a href=""><?php echo "Note:" . number_format((float)$film["avis"][0]["note"], 1, '.', ''). "/5" ?> </a></h4>
     <form action="" method="POST">
       <select name="filtre" id="filtre">
         <option value="vente">Ventes</option>
